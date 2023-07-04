@@ -1,0 +1,26 @@
+{
+    "name": "megamindame/school_scraper",
+    "description": "This package scrapes all Tanzania's schools from Necta's website.",
+    "type": "project",
+    "license": "mti",
+    "autoload": {
+        "files": [
+            "helpers.php"
+        ],
+        "psr-4": {
+            "Megamindame\\SchoolScraper\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "MegaMindAme",
+            "email": "megamindame@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "guzzlehttp/guzzle": "^7.7",
+        "ext-libxml": "*",
+        "ext-dom": "*"
+    }
+}

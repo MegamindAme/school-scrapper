@@ -2,7 +2,7 @@
     "name": "megamindame/school_scraper",
     "description": "This package scrapes all Tanzania's schools from Necta's website.",
     "type": "project",
-    "license": "mti",
+    "license": "MIT",
     "autoload": {
         "files": [
             "helpers.php"

@@ -21,9 +21,9 @@ class PrimaryFetcher extends Fetcher
 
     private string $root_url;
 
-    public function __construct()
+    public function __construct($year = 2022)
     {
-        parent::__construct();
+        parent::__construct($year);
     }
 
     public function getSchools(bool $raw = false)
@@ -51,9 +51,18 @@ class PrimaryFetcher extends Fetcher
         return $nodes;
     }
 
-    public function getNodes()
+    public function getNodes($formatted = true)
     {
-        $this->getPrimaryNodes();
+        if ($formatted)
+            return $this->getPrimaryNodes();
+
+        $data = [];
+
+        foreach ($this->getPrimaryNodes() as $node)
+            foreach ($node as $item)
+                    $data[] = $item;
+
+        return $data;
     }
 
     protected function fetchPrimaryNodes()

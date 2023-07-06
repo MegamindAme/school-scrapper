@@ -15,9 +15,9 @@ class Fetcher
 
     protected $nodes;
 
-    public function __construct()
+    public function __construct($year = 2022)
     {
-        $this->setRootUrl(config('necta.results_url.primary', ['year' => 2022]));
+        $this->setRootUrl(config('necta.results_url.primary', ['year' => $year]));
     }
 
     protected function setRootUrl($url)
@@ -30,14 +30,20 @@ class Fetcher
         return $this->root_url;
     }
 
-    public function getData()
+    protected function getData()
     {
         if (!isset($this->data)) $this->setData();
         return $this->data;
     }
 
+    protected function getNodes()
+    {
+        if (!isset($this->nodes)) $this->fetchNodes();
+        return $this->nodes;
+    }
+
     //Gets the root_url data
-    public final function getRootData()
+    protected final function getRootData()
     {
         if (!isset($this->data)) $this->setData();
         return $this->data;
@@ -57,12 +63,6 @@ class Fetcher
         $rootXpath = new DOMXPath($rootDoc);
 
         $this->nodes = $rootXpath->evaluate('//table[last()]//td//a');
-    }
-
-    protected function getNodes()
-    {
-        if (!isset($this->nodes)) $this->fetchNodes();
-        return $this->nodes;
     }
 
     private function setData()
